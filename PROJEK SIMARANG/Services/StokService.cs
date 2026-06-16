@@ -17,11 +17,11 @@ namespace PROJEK_SIMARANG.Services
             using (var conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string query = @"SELECT s.stok_id, s.jumlah_stok, s.stok_minimum, s.tanggal_update,
-                                        s.produk_id, p.nama_produk, p.satuan
-                                 FROM stok s
-                                 JOIN produk p ON s.produk_id = p.produk_id
-                                 ORDER BY p.nama_produk";
+                string query = @"SELECT s.id_stok, s.jumlah_stok, s.stok_minimum, s.tanggal_update,
+                        s.id_produk, p.nama_produk, p.satuan
+                 FROM stok s
+                 JOIN produk p ON s.id_produk = p.id_produk
+                 ORDER BY p.nama_produk";
                 using (var cmd = new NpgsqlCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -49,10 +49,10 @@ namespace PROJEK_SIMARANG.Services
             using (var conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string query = @"SELECT s.stok_id, s.jumlah_stok, s.stok_minimum, s.tanggal_update,
-                                        s.produk_id, p.nama_produk, p.satuan
+                string query = @"SELECT s.id_stok, s.jumlah_stok, s.stok_minimum, s.tanggal_update,
+                                        s.id_produk, p.nama_produk, p.satuan
                                  FROM stok s
-                                 JOIN produk p ON s.produk_id = p.produk_id
+                                 JOIN produk p ON s.id_produk = p.id_produk
                                  WHERE s.jumlah_stok <= s.stok_minimum
                                  ORDER BY s.jumlah_stok ASC";
                 using (var cmd = new NpgsqlCommand(query, conn))
@@ -83,7 +83,7 @@ namespace PROJEK_SIMARANG.Services
                 conn.Open();
                 string query = @"UPDATE stok SET jumlah_stok = @jumlah, 
                                  tanggal_update = CURRENT_TIMESTAMP 
-                                 WHERE produk_id = @produkid";
+                                 WHERE id_produk = @produkid";
                 using (var cmd = new NpgsqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("jumlah", jumlahBaru);

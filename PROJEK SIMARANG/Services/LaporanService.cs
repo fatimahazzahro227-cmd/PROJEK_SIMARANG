@@ -93,7 +93,7 @@ namespace PROJEK_SIMARANG.Services
             using (var conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM stok WHERE jumlah_stok <= stok_minimum";
+                string query = "SELECT COUNT(*) FROM v_monitoring_stok WHERE status_stok IN ('Kritis','Habis')";
                 using (var cmd = new NpgsqlCommand(query, conn))
                     return Convert.ToInt32(cmd.ExecuteScalar());
             }

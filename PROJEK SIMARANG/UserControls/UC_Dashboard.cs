@@ -36,6 +36,9 @@ namespace PROJEK_SIMARANG.UserControls
                 lblTotalPenjualan.Text = _laporanService.GetTotalPenjualanBulanIni().ToString();
                 lblTotalSupplier.Text = _laporanService.GetTotalSupplier().ToString();
                 lblStokMenipis.Text = _laporanService.GetStokMenupis().ToString();
+                int totalProduk = _laporanService.GetTotalProduk();
+                MessageBox.Show("Debug Total Produk: " + totalProduk);
+                lblTotalProduk.Text = totalProduk.ToString();
 
                 if (_laporanService.GetStokMenupis() > 0)
                     lblStokMenipis.ForeColor = System.Drawing.Color.Red;
@@ -198,6 +201,53 @@ namespace PROJEK_SIMARANG.UserControls
 
         private void dgvTransaksi_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+
+            if (panelTransaksi != null)
+            {
+                panelTransaksi.Width = this.Width - 40;
+                panelTransaksi.Height = this.Height - 220;
+                dgvTransaksi.Width = panelTransaksi.Width - 30;
+                dgvTransaksi.Height = panelTransaksi.Height - 60;
+            }
+
+            if (cardProduk != null)
+            {
+                int totalWidth = this.Width - 40;
+                int cardWidth = (totalWidth - 30) / 4;
+
+                cardProduk.Location = new System.Drawing.Point(20, 100);
+                cardProduk.Width = cardWidth;
+
+                cardPenjualan.Location = new System.Drawing.Point(20 + cardWidth + 10, 100);
+                cardPenjualan.Width = cardWidth;
+
+                cardSupplier.Location = new System.Drawing.Point(20 + (cardWidth + 10) * 2, 100);
+                cardSupplier.Width = cardWidth;
+
+                cardStokMenipis.Location = new System.Drawing.Point(20 + (cardWidth + 10) * 3, 100);
+                cardStokMenipis.Width = cardWidth;
+            }
+
+            if (lblTransaksiTittle != null)
+            {
+                lblTransaksiTittle.Location = new System.Drawing.Point(15, 15);
+            }
 
         }
     }

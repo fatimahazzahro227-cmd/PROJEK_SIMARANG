@@ -1,4 +1,7 @@
-﻿using System;
+﻿using PROJEK_SIMARANG.Helpers;
+using PROJEK_SIMARANG.Models;
+using PROJEK_SIMARANG.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using PROJEK_SIMARANG.Services;
-using PROJEK_SIMARANG.Models;
 
 namespace PROJEK_SIMARANG.UserControls
 {
@@ -29,6 +30,13 @@ namespace PROJEK_SIMARANG.UserControls
             LoadKategori();
             LoadProduk();
             panelInput.Visible = false;
+
+            if (SessionHelper.RoleId == 2)
+            {
+                btnTambah.Visible = false;
+                btnEdit.Visible = false;
+                btnHapus.Visible = false;
+            }
         }
 
         private void LoadKategori()
@@ -37,6 +45,7 @@ namespace PROJEK_SIMARANG.UserControls
             cmbKategori.DataSource = list;
             cmbKategori.DisplayMember = "NamaKategori";
             cmbKategori.ValueMember = "KategoriProdukId";
+
         }
 
         private void LoadProduk()
@@ -212,7 +221,7 @@ namespace PROJEK_SIMARANG.UserControls
 
         private void btnBatal_Click(object sender, EventArgs e)
         {
-            panelInput.Visible = false;
+            panelInput.Visible = false; 
             BersihkanForm();
         }
 
@@ -239,6 +248,11 @@ namespace PROJEK_SIMARANG.UserControls
         }
 
         private void txtsatuan_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvProduk_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
