@@ -36,9 +36,6 @@ namespace PROJEK_SIMARANG.UserControls
                 lblTotalPenjualan.Text = _laporanService.GetTotalPenjualanBulanIni().ToString();
                 lblTotalSupplier.Text = _laporanService.GetTotalSupplier().ToString();
                 lblStokMenipis.Text = _laporanService.GetStokMenupis().ToString();
-                int totalProduk = _laporanService.GetTotalProduk();
-                MessageBox.Show("Debug Total Produk: " + totalProduk);
-                lblTotalProduk.Text = totalProduk.ToString();
 
                 if (_laporanService.GetStokMenupis() > 0)
                     lblStokMenipis.ForeColor = System.Drawing.Color.Red;

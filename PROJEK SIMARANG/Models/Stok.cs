@@ -15,5 +15,8 @@ namespace PROJEK_SIMARANG.Models
         public int ProdukId { get; set; }
         public string NamaProduk { get; set; }
         public string Satuan { get; set; }
+        public string NamaKategori { get; set; }
+        public int SelisihStok { get; set; }
+        public string StatusStok { get; set; }
     }
 }

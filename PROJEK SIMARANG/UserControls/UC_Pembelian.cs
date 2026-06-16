@@ -63,14 +63,10 @@ namespace PROJEK_SIMARANG.UserControls
                     SupplierId = Convert.ToInt32(cmbSupplier.SelectedValue)
                 };
 
-                int pembelianId = _pembelianService.Add(pembelian);
-
-                foreach (var item in _listItem)
-                {
-                    item.PembelianId = pembelianId;
-                    _pembelianService.AddDetail(item);
-                    // stok otomatis bertambah via trigger trg_tambah_stok_beli
-                }
+                _pembelianService.SimpanPembelian(
+                pembelian,
+                _listItem
+            );
 
                 MessageBox.Show("Transaksi pembelian berhasil disimpan.");
                 panelInput.Visible = false;

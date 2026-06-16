@@ -116,5 +116,86 @@ namespace PROJEK_SIMARANG.Services
             }
             return list;
         }
+
+        public void SimpanPembelian(
+    Pembelian pembelian,
+    List<DetailPembelian> items)
+        {
+            using (var conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+
+                using (var trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        int pembelianId;
+
+                        string headerQuery = @"
+                INSERT INTO pembelian
+                (
+                    tanggal_pembelian,
+                    status_pembelian,
+                    id_user,
+                    id_supplier
+                )
+                VALUES
+                (
+                    @tgl,
+                    @status,
+                    @userid,
+                    @supplierid
+                )
+                RETURNING id_pembelian";
+
+                        using (var cmd = new NpgsqlCommand(headerQuery, conn, trans))
+                        {
+                            cmd.Parameters.AddWithValue("tgl", pembelian.TanggalPembelian);
+                            cmd.Parameters.AddWithValue("status", pembelian.StatusPembelian);
+                            cmd.Parameters.AddWithValue("userid", pembelian.UserId);
+                            cmd.Parameters.AddWithValue("supplierid", pembelian.SupplierId);
+
+                            pembelianId = (int)cmd.ExecuteScalar();
+                        }
+
+                        foreach (var item in items)
+                        {
+                            string detailQuery = @"
+                    INSERT INTO detail_pembelian
+                    (
+                        id_pembelian,
+                        id_produk,
+                        jumlah,
+                        harga_beli
+                    )
+                    VALUES
+                    (
+                        @pembelianid,
+                        @produkid,
+                        @jumlah,
+                        @harga
+                    )";
+
+                            using (var cmd = new NpgsqlCommand(detailQuery, conn, trans))
+                            {
+                                cmd.Parameters.AddWithValue("pembelianid", pembelianId);
+                                cmd.Parameters.AddWithValue("produkid", item.ProdukId);
+                                cmd.Parameters.AddWithValue("jumlah", item.Jumlah);
+                                cmd.Parameters.AddWithValue("harga", item.HargaBeli);
+
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        trans.Commit();
+                    }
+                    catch
+                    {
+                        trans.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
     }
 }

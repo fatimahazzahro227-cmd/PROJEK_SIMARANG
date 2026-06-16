@@ -17,11 +17,16 @@ namespace PROJEK_SIMARANG.Services
             using (var conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string query = @"SELECT s.id_stok, s.jumlah_stok, s.stok_minimum, s.tanggal_update,
-                        s.id_produk, p.nama_produk, p.satuan
-                 FROM stok s
-                 JOIN produk p ON s.id_produk = p.id_produk
-                 ORDER BY p.nama_produk";
+                string query = @"
+                SELECT
+                    id_stok,
+                    id_produk,
+                    nama_produk,
+                    jumlah_stok,
+                    stok_minimum,
+                    tanggal_update
+                FROM v_monitoring_stok
+                ORDER BY nama_produk";
                 using (var cmd = new NpgsqlCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -30,12 +35,11 @@ namespace PROJEK_SIMARANG.Services
                         list.Add(new Stok
                         {
                             StokId = reader.GetInt32(0),
-                            JumlahStok = reader.GetInt32(1),
-                            StokMinimum = reader.GetInt32(2),
-                            TanggalUpdate = reader.GetDateTime(3),
-                            ProdukId = reader.GetInt32(4),
-                            NamaProduk = reader.GetString(5),
-                            Satuan = reader.IsDBNull(6) ? "" : reader.GetString(6)
+                            ProdukId = reader.GetInt32(1),
+                            NamaProduk = reader.GetString(2),
+                            JumlahStok = reader.GetInt32(3),
+                            StokMinimum = reader.GetInt32(4),
+                            TanggalUpdate = reader.GetDateTime(5)
                         });
                     }
                 }
@@ -49,12 +53,19 @@ namespace PROJEK_SIMARANG.Services
             using (var conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string query = @"SELECT s.id_stok, s.jumlah_stok, s.stok_minimum, s.tanggal_update,
-                                        s.id_produk, p.nama_produk, p.satuan
-                                 FROM stok s
-                                 JOIN produk p ON s.id_produk = p.id_produk
-                                 WHERE s.jumlah_stok <= s.stok_minimum
-                                 ORDER BY s.jumlah_stok ASC";
+                string query = @"SELECT
+                    id_stok,
+                    id_produk,
+                    nama_produk,
+                    nama_kategori,
+                    satuan,
+                    jumlah_stok,
+                    stok_minimum,
+                    selisih_stok,
+                    status_stok,
+                    tanggal_update
+                FROM v_monitoring_stok
+                ORDER BY nama_produk";
                 using (var cmd = new NpgsqlCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -63,12 +74,15 @@ namespace PROJEK_SIMARANG.Services
                         list.Add(new Stok
                         {
                             StokId = reader.GetInt32(0),
-                            JumlahStok = reader.GetInt32(1),
-                            StokMinimum = reader.GetInt32(2),
-                            TanggalUpdate = reader.GetDateTime(3),
-                            ProdukId = reader.GetInt32(4),
-                            NamaProduk = reader.GetString(5),
-                            Satuan = reader.IsDBNull(6) ? "" : reader.GetString(6)
+                            ProdukId = reader.GetInt32(1),
+                            NamaProduk = reader.GetString(2),
+                            NamaKategori = reader.GetString(3),
+                            Satuan = reader.GetString(4),
+                            JumlahStok = reader.GetInt32(5),
+                            StokMinimum = reader.GetInt32(6),
+                            SelisihStok = reader.GetInt32(7),
+                            StatusStok = reader.GetString(8),
+                            TanggalUpdate = reader.GetDateTime(9)
                         });
                     }
                 }
