@@ -17,13 +17,16 @@ namespace PROJEK_SIMARANG.Services
             using (var conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string query = @"
-                SELECT
+                string query = @"SELECT
                     id_stok,
                     id_produk,
                     nama_produk,
+                    nama_kategori,
+                    satuan,
                     jumlah_stok,
                     stok_minimum,
+                    selisih_stok,
+                    status_stok,
                     tanggal_update
                 FROM v_monitoring_stok
                 ORDER BY nama_produk";
@@ -37,9 +40,13 @@ namespace PROJEK_SIMARANG.Services
                             StokId = reader.GetInt32(0),
                             ProdukId = reader.GetInt32(1),
                             NamaProduk = reader.GetString(2),
-                            JumlahStok = reader.GetInt32(3),
-                            StokMinimum = reader.GetInt32(4),
-                            TanggalUpdate = reader.GetDateTime(5)
+                            NamaKategori = reader.GetString(3),
+                            Satuan = reader.GetString(4),
+                            JumlahStok = reader.GetInt32(5),
+                            StokMinimum = reader.GetInt32(6),
+                            SelisihStok = reader.GetInt32(7),
+                            StatusStok = reader.GetString(8),
+                            TanggalUpdate = reader.GetDateTime(9)
                         });
                     }
                 }
@@ -65,7 +72,8 @@ namespace PROJEK_SIMARANG.Services
                     status_stok,
                     tanggal_update
                 FROM v_monitoring_stok
-                ORDER BY nama_produk";
+                WHERE status_stok IN ('Kritis', 'Habis')
+                ORDER BY selisih_stok ASC";
                 using (var cmd = new NpgsqlCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
                 {

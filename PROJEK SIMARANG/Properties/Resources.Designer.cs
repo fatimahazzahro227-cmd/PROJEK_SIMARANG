@@ -63,6 +63,16 @@ namespace PROJEK_SIMARANG.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AWALAN {
+            get {
+                object obj = ResourceManager.GetObject("AWALAN", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dashboard {
             get {
                 object obj = ResourceManager.GetObject("dashboard", resourceCulture);
@@ -106,6 +116,16 @@ namespace PROJEK_SIMARANG.Properties {
         internal static System.Drawing.Bitmap login {
             get {
                 object obj = ResourceManager.GetObject("login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap maskot_bintang {
+            get {
+                object obj = ResourceManager.GetObject("maskot bintang", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -76,6 +76,38 @@ namespace PROJEK_SIMARANG.Services
             }
         }
 
+        public void AddViaProcedure(Penjualan pj)
+        {
+            using (var conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand("CALL sp_buat_penjualan(@pel, @usr, @met, @opsi, @alamat)", conn))
+                {
+                    cmd.Parameters.AddWithValue("pel", pj.PelangganId);
+                    cmd.Parameters.AddWithValue("usr", pj.UserId);
+                    cmd.Parameters.AddWithValue("met", pj.MetodePembayaranId);
+                    cmd.Parameters.AddWithValue("opsi", pj.OpsiPenyerahan ?? "Ambil di Tempat");
+                    cmd.Parameters.AddWithValue("alamat", pj.AlamatPengiriman ?? "");
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void AddDetailViaProcedure(int idPenjualan, int idProduk, int jumlah)
+        {
+            using (var conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand("CALL sp_tambah_item_penjualan(@idj, @idp, @jml)", conn))
+                {
+                    cmd.Parameters.AddWithValue("idj", idPenjualan);
+                    cmd.Parameters.AddWithValue("idp", idProduk);
+                    cmd.Parameters.AddWithValue("jml", jumlah);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public void AddDetail(DetailPenjualan dp)
         {
             using (var conn = DatabaseHelper.GetConnection())

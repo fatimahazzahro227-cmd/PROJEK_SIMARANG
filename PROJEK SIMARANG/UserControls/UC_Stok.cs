@@ -55,27 +55,32 @@ namespace PROJEK_SIMARANG.UserControls
 
             dgvStok.Columns.Add("ID", "ID");
             dgvStok.Columns.Add("NamaProduk", "Nama Produk");
+            dgvStok.Columns.Add("Kategori", "Kategori");
             dgvStok.Columns.Add("Satuan", "Satuan");
             dgvStok.Columns.Add("JumlahStok", "Jumlah Stok");
             dgvStok.Columns.Add("StokMinimum", "Stok Minimum");
-            dgvStok.Columns.Add("TanggalUpdate", "Terakhir Update");
+            dgvStok.Columns.Add("Selisih", "Selisih");
             dgvStok.Columns.Add("Status", "Status");
+            dgvStok.Columns.Add("TanggalUpdate", "Terakhir Update");
 
             foreach (var s in list)
             {
-                string status = s.JumlahStok <= s.StokMinimum ? "Menipis" : "Aman";
                 var row = dgvStok.Rows.Add(
                     s.ProdukId,
                     s.NamaProduk,
+                    s.NamaKategori,
                     s.Satuan,
                     s.JumlahStok,
                     s.StokMinimum,
-                    s.TanggalUpdate.ToString("dd/MM/yyyy HH:mm"),
-                    status
+                    s.SelisihStok,
+                    s.StatusStok,
+                    s.TanggalUpdate.ToString("dd/MM/yyyy HH:mm")
                 );
 
-                if (s.JumlahStok <= s.StokMinimum)
+                if (s.StatusStok == "Kritis" || s.StatusStok == "Habis")
                     dgvStok.Rows[row].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+                else if (s.StatusStok == "Rendah")
+                    dgvStok.Rows[row].DefaultCellStyle.ForeColor = System.Drawing.Color.Orange;
             }
         }
 

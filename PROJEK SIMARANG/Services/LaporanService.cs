@@ -1,6 +1,8 @@
-﻿using System;
-using Npgsql;
+﻿using Npgsql;
+using NpgsqlTypes;
 using PROJEK_SIMARANG.Database;
+using System;
+using System.Data;
 
 namespace PROJEK_SIMARANG.Services
 {
@@ -97,6 +99,96 @@ namespace PROJEK_SIMARANG.Services
                 using (var cmd = new NpgsqlCommand(query, conn))
                     return Convert.ToInt32(cmd.ExecuteScalar());
             }
+        }
+
+        public DataTable GetDetailPenjualanLengkap(DateTime dari, DateTime sampai)
+        {
+            using (var conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = @"
+            SELECT tanggal_penjualan, nama_pelanggan, jenis_usaha,
+                   kasir, metode_bayar, opsi_penyerahan, status_logistik,
+                   nama_produk, nama_kategori, jumlah, harga_jual,
+                   subtotal, laba_item
+            FROM v_detail_penjualan_lengkap
+            WHERE DATE(tanggal_penjualan) BETWEEN @dari AND @sampai
+            ORDER BY tanggal_penjualan DESC";
+                using (var cmd = new NpgsqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("dari", dari);
+                    cmd.Parameters.AddWithValue("sampai", sampai);
+                    var dt = new DataTable();
+                    new NpgsqlDataAdapter(cmd).Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable GetLabaRugiBulanan()
+        {
+            using (var conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT * FROM v_laporan_laba_rugi_bulanan";
+                using (var cmd = new NpgsqlCommand(query, conn))
+                {
+                    var dt = new DataTable();
+                    new NpgsqlDataAdapter(cmd).Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public decimal GetTotalSatuPenjualan(int idPenjualan)
+        {
+            using (var conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT fn_total_penjualan(@id)";
+                using (var cmd = new NpgsqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("id", idPenjualan);
+                    return (decimal)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        public (decimal Pendapatan, decimal Modal, decimal LabaKotor, decimal MarginPersen)
+    GetLabaKotorPeriode(DateTime dari, DateTime sampai)
+        {
+            using (var conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = @"
+            SELECT total_pendapatan, total_modal, laba_kotor, margin_persen
+            FROM fn_laba_kotor_periode(@dari, @sampai)";
+                using (var cmd = new NpgsqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new NpgsqlParameter("dari", NpgsqlTypes.NpgsqlDbType.Date)
+                    {
+                        Value = dari.Date
+                    });
+                    cmd.Parameters.Add(new NpgsqlParameter("sampai", NpgsqlTypes.NpgsqlDbType.Date)
+                    {
+                        Value = sampai.Date
+                    });
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return (
+                                reader.GetDecimal(0),
+                                reader.GetDecimal(1),
+                                reader.GetDecimal(2),
+                                reader.IsDBNull(3) ? 0 : reader.GetDecimal(3)
+                            );
+                        }
+                    }
+                }
+            }
+            return (0, 0, 0, 0);
         }
     }
 }

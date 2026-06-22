@@ -53,9 +53,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.panelInput = new System.Windows.Forms.Panel();
             this.dgvProduk = new System.Windows.Forms.DataGridView();
+            this.pictFoto = new System.Windows.Forms.PictureBox();
+            this.btnPilihFoto = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.panelInput.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduk)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCari
@@ -158,8 +161,6 @@
             // 
             // txtDeskripsi
             // 
-            this.txtDeskripsi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDeskripsi.Location = new System.Drawing.Point(23, 291);
             this.txtDeskripsi.Name = "txtDeskripsi";
             this.txtDeskripsi.Size = new System.Drawing.Size(340, 22);
@@ -196,22 +197,19 @@
             // 
             // cmbKategori
             // 
-            this.cmbKategori.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbKategori.FormattingEnabled = true;
             this.cmbKategori.Location = new System.Drawing.Point(23, 119);
             this.cmbKategori.Name = "cmbKategori";
-            this.cmbKategori.Size = new System.Drawing.Size(340, 24);
+            this.cmbKategori.Size = new System.Drawing.Size(200, 24);
             this.cmbKategori.TabIndex = 4;
             // 
             // txtNamaProduk
             // 
-            this.txtNamaProduk.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNamaProduk.Location = new System.Drawing.Point(23, 65);
             this.txtNamaProduk.Name = "txtNamaProduk";
-            this.txtNamaProduk.Size = new System.Drawing.Size(340, 22);
+            this.txtNamaProduk.Size = new System.Drawing.Size(200, 22);
             this.txtNamaProduk.TabIndex = 2;
+            this.txtNamaProduk.TextChanged += new System.EventHandler(this.txtNamaProduk_TextChanged);
             // 
             // panelTop
             // 
@@ -315,6 +313,9 @@
             this.panelInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelInput.BackColor = System.Drawing.Color.White;
+            this.panelInput.Controls.Add(this.btnPilihFoto);
+            this.panelInput.Controls.Add(this.cmbKategori);
+            this.panelInput.Controls.Add(this.pictFoto);
             this.panelInput.Controls.Add(this.txtSatuan);
             this.panelInput.Controls.Add(this.btnBatal);
             this.panelInput.Controls.Add(this.btnSimpan);
@@ -327,7 +328,6 @@
             this.panelInput.Controls.Add(this.cmbStatus);
             this.panelInput.Controls.Add(this.label4);
             this.panelInput.Controls.Add(this.label3);
-            this.panelInput.Controls.Add(this.cmbKategori);
             this.panelInput.Controls.Add(this.label1);
             this.panelInput.Controls.Add(this.txtNamaProduk);
             this.panelInput.Controls.Add(this.label2);
@@ -357,6 +357,28 @@
             this.dgvProduk.Size = new System.Drawing.Size(940, 460);
             this.dgvProduk.TabIndex = 3;
             // 
+            // pictFoto
+            // 
+            this.pictFoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictFoto.Location = new System.Drawing.Point(263, 13);
+            this.pictFoto.Name = "pictFoto";
+            this.pictFoto.Size = new System.Drawing.Size(100, 100);
+            this.pictFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictFoto.TabIndex = 18;
+            this.pictFoto.TabStop = false;
+            // 
+            // btnPilihFoto
+            // 
+            this.btnPilihFoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPilihFoto.Location = new System.Drawing.Point(273, 120);
+            this.btnPilihFoto.Name = "btnPilihFoto";
+            this.btnPilihFoto.Size = new System.Drawing.Size(75, 23);
+            this.btnPilihFoto.TabIndex = 5;
+            this.btnPilihFoto.Text = "Pilih Foto";
+            this.btnPilihFoto.UseVisualStyleBackColor = true;
+            this.btnPilihFoto.Click += new System.EventHandler(this.btnPilihFoto_Click);
+            // 
             // UC_Produk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -374,6 +396,7 @@
             this.panelInput.ResumeLayout(false);
             this.panelInput.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduk)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictFoto)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -404,5 +427,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panelInput;
         private System.Windows.Forms.DataGridView dgvProduk;
+        private System.Windows.Forms.Button btnPilihFoto;
+        private System.Windows.Forms.PictureBox pictFoto;
     }
 }

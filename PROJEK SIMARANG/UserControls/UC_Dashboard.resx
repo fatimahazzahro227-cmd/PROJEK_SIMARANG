@@ -123,13 +123,6 @@
   <data name="&gt;&gt;panel3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="panelTransaksi.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;lblTitle.Name" xml:space="preserve">
-    <value>lblTitle</value>
-  </data>
   <data name="&gt;&gt;lblTotalSupplierDesc.Parent" xml:space="preserve">
     <value>cardSupplier</value>
   </data>
@@ -137,6 +130,7 @@
   <data name="lblTitle.Font" type="System.Drawing.Font, System.Drawing">
     <value>Goudy Stout, 16.2pt, style=Bold</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lblSubtitle.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -162,9 +156,6 @@
     <value>1</value>
   </data>
   <data name="&gt;&gt;cardSupplier.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblSubtitle.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="lblStokMenipisTitle.AutoSize" type="System.Boolean, mscorlib">
@@ -208,6 +199,9 @@
   </data>
   <data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 103</value>
+  </data>
+  <data name="lblStokMenipisTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="lblTotalSupplierDesc.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -272,6 +266,12 @@
   <data name="lblTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>339, 39</value>
   </data>
+  <data name="&gt;&gt;lblTransaksiTittle.Name" xml:space="preserve">
+    <value>lblTransaksiTittle</value>
+  </data>
+  <data name="lblTotalPenjualanDesc.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9pt</value>
+  </data>
   <data name="&gt;&gt;lblTotalPenjualanTitle.Name" xml:space="preserve">
     <value>lblTotalPenjualanTitle</value>
   </data>
@@ -293,14 +293,14 @@
   <data name="lblTotalProdukDesc.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="&gt;&gt;lblStokMenipisTitle.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="&gt;&gt;dgvTransaksi.Parent" xml:space="preserve">
     <value>panelTransaksi</value>
   </data>
   <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
     <value>274, 99</value>
-  </data>
-  <data name="lblTransaksiTittle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 19</value>
   </data>
   <data name="&gt;&gt;cardStokMenipis.Parent" xml:space="preserve">
     <value>$this</value>
@@ -310,6 +310,12 @@
   </data>
   <data name="lblTitle.Location" type="System.Drawing.Point, System.Drawing">
     <value>328, 24</value>
+  </data>
+  <data name="lblTotalProdukTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblTotalSupplier.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;lblTotalPenjualanTitle.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -350,11 +356,11 @@
   <data name="lblTotalProduk.Location" type="System.Drawing.Point, System.Drawing">
     <value>72, 44</value>
   </data>
-  <data name="lblStokMenipisDesc.Text" xml:space="preserve">
-    <value>Produk perlu restok</value>
-  </data>
   <data name="&gt;&gt;lblSubtitle.Name" xml:space="preserve">
     <value>lblSubtitle</value>
+  </data>
+  <data name="&gt;&gt;lblTotalProduk.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="lblStokMenipisDesc.Location" type="System.Drawing.Point, System.Drawing">
     <value>19, 73</value>
@@ -367,9 +373,6 @@
   </data>
   <data name="lblTotalSupplierTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="&gt;&gt;dgvTransaksi.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="&gt;&gt;cardPenjualan.Name" xml:space="preserve">
     <value>cardPenjualan</value>
@@ -388,9 +391,6 @@
   </data>
   <data name="&gt;&gt;lblTotalSupplierDesc.Name" xml:space="preserve">
     <value>lblTotalSupplierDesc</value>
-  </data>
-  <data name="lblStokMenipis.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 20</value>
   </data>
   <data name="lblTotalPenjualanDesc.Location" type="System.Drawing.Point, System.Drawing">
     <value>35, 73</value>
@@ -416,8 +416,11 @@
   <data name="lblTotalProdukTitle.Location" type="System.Drawing.Point, System.Drawing">
     <value>19, 16</value>
   </data>
-  <data name="&gt;&gt;lblTotalProdukDesc.Parent" xml:space="preserve">
-    <value>cardProduk</value>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTotalProdukTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lblTotalProdukTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -433,9 +436,6 @@
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
-  </data>
-  <data name="lblStokMenipis.Location" type="System.Drawing.Point, System.Drawing">
-    <value>69, 44</value>
   </data>
   <data name="&gt;&gt;lblTotalPenjualan.Name" xml:space="preserve">
     <value>lblTotalPenjualan</value>
@@ -473,17 +473,14 @@
   <data name="lblStokMenipisTitle.Text" xml:space="preserve">
     <value>STOK MENIPIS</value>
   </data>
-  <data name="lblTotalProduk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 20</value>
-  </data>
   <data name="&gt;&gt;lblTotalSupplier.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lblTransaksiTittle.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 20</value>
   </data>
-  <data name="&gt;&gt;lblTotalPenjualanTitle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblTitle.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -493,9 +490,6 @@
   </data>
   <data name="panelTransaksi.Size" type="System.Drawing.Size, System.Drawing">
     <value>920, 380</value>
-  </data>
-  <data name="&gt;&gt;lblTitle.ZOrder" xml:space="preserve">
-    <value>6</value>
   </data>
   <data name="&gt;&gt;cardProduk.Parent" xml:space="preserve">
     <value>$this</value>
@@ -512,6 +506,9 @@
   <data name="lblTotalSupplierDesc.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 73</value>
   </data>
+  <data name="&gt;&gt;cardPenjualan.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>175, 103</value>
   </data>
@@ -521,20 +518,11 @@
   <data name="&gt;&gt;panel3.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblTotalPenjualanDesc.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="dgvTransaksi.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="panel2.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
-  </data>
-  <data name="&gt;&gt;lblTotalSupplierTitle.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="&gt;&gt;cardStokMenipis.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -545,8 +533,8 @@
   <data name="&gt;&gt;lblTotalPenjualan.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;lblTitle.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="panelTransaksi.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="lblTitle.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -563,14 +551,20 @@
   <data name="lblTotalPenjualanDesc.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 17</value>
   </data>
-  <data name="&gt;&gt;lblTotalProduk.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;lblTotalProdukDesc.Parent" xml:space="preserve">
+    <value>cardProduk</value>
   </data>
   <data name="&gt;&gt;lblSubtitle.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
   <data name="lblStokMenipisTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 19</value>
+  </data>
+  <data name="&gt;&gt;panelTransaksi.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblTotalSupplier.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;lblTotalSupplierTitle.Name" xml:space="preserve">
     <value>lblTotalSupplierTitle</value>
@@ -596,11 +590,17 @@
   <data name="&gt;&gt;lblStokMenipis.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;panelTransaksi.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;dgvTransaksi.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblTotalPenjualanTitle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 10.2pt, style=Bold</value>
   </data>
   <data name="&gt;&gt;panel4.Name" xml:space="preserve">
     <value>panel4</value>
+  </data>
+  <data name="&gt;&gt;lblTotalProdukDesc.Name" xml:space="preserve">
+    <value>lblTotalProdukDesc</value>
   </data>
   <data name="&gt;&gt;lblTransaksiTittle.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -608,8 +608,8 @@
   <data name="lblTotalPenjualan.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;lblStokMenipisTitle.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="lblTotalProduk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>18, 20</value>
   </data>
   <data name="&gt;&gt;lblTotalPenjualanDesc.Name" xml:space="preserve">
     <value>lblTotalPenjualanDesc</value>
@@ -644,8 +644,8 @@
   <data name="&gt;&gt;lblTotalPenjualan.Parent" xml:space="preserve">
     <value>cardPenjualan</value>
   </data>
-  <data name="&gt;&gt;lblTransaksiTittle.Name" xml:space="preserve">
-    <value>lblTransaksiTittle</value>
+  <data name="&gt;&gt;lblTitle.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="lblTotalPenjualanDesc.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -653,11 +653,8 @@
   <data name="lblSubtitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>296, 23</value>
   </data>
-  <data name="panel4.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="lblTotalPenjualanTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Times New Roman, 10.2pt, style=Bold</value>
+  <data name="&gt;&gt;lblTitle.Name" xml:space="preserve">
+    <value>lblTitle</value>
   </data>
   <data name="&gt;&gt;lblStokMenipis.Name" xml:space="preserve">
     <value>lblStokMenipis</value>
@@ -695,6 +692,9 @@
   <data name="&gt;&gt;lblTotalPenjualanTitle.Parent" xml:space="preserve">
     <value>cardPenjualan</value>
   </data>
+  <data name="lblTotalProdukDesc.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9pt</value>
+  </data>
   <data name="&gt;&gt;cardPenjualan.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
@@ -707,8 +707,8 @@
   <data name="panel4.Size" type="System.Drawing.Size, System.Drawing">
     <value>162, 103</value>
   </data>
-  <data name="&gt;&gt;lblTotalProdukDesc.Name" xml:space="preserve">
-    <value>lblTotalProdukDesc</value>
+  <data name="lblStokMenipis.Location" type="System.Drawing.Point, System.Drawing">
+    <value>69, 44</value>
   </data>
   <data name="lblTotalSupplier.Text" xml:space="preserve">
     <value>0</value>
@@ -716,8 +716,8 @@
   <data name="&gt;&gt;panelTransaksi.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lblTotalProdukDesc.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Times New Roman, 9pt</value>
+  <data name="&gt;&gt;lblTotalSupplierTitle.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="lblStokMenipis.Text" xml:space="preserve">
     <value>0</value>
@@ -737,17 +737,17 @@
   <data name="&gt;&gt;lblTotalProdukTitle.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="lblTotalSupplier.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;lblTotalPenjualanDesc.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="lblTotalPenjualanDesc.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Times New Roman, 9pt</value>
+  <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;lblTotalSupplier.Name" xml:space="preserve">
     <value>lblTotalSupplier</value>
   </data>
-  <data name="lblStokMenipisTitle.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="lblStokMenipisDesc.Text" xml:space="preserve">
+    <value>Produk perlu restok</value>
   </data>
   <data name="&gt;&gt;cardPenjualan.Parent" xml:space="preserve">
     <value>$this</value>
@@ -758,8 +758,8 @@
   <data name="lblTotalPenjualan.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10.8pt, style=Bold</value>
   </data>
-  <data name="&gt;&gt;lblTotalSupplier.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="panel4.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="cardStokMenipis.Location" type="System.Drawing.Point, System.Drawing">
     <value>751, 99</value>
@@ -770,17 +770,17 @@
   <data name="panel4.Location" type="System.Drawing.Point, System.Drawing">
     <value>749, 99</value>
   </data>
-  <data name="&gt;&gt;cardPenjualan.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblStokMenipis.Size" type="System.Drawing.Size, System.Drawing">
+    <value>18, 20</value>
   </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblSubtitle.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="lblTotalProdukTitle.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblTotalProdukTitle.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblTotalPenjualanTitle.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblTransaksiTittle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 19</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

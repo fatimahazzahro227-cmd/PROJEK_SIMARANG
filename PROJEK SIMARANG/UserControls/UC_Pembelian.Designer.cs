@@ -127,6 +127,7 @@
             this.btnSimpanTransaksi.TabIndex = 12;
             this.btnSimpanTransaksi.Text = "Simpan Transaksi";
             this.btnSimpanTransaksi.UseVisualStyleBackColor = true;
+            this.btnSimpanTransaksi.Click += new System.EventHandler(this.btnSimpanTransaksi_Click);
             // 
             // btnBatalTransaksi
             // 
@@ -185,7 +186,7 @@
             this.dgvPembelian.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvPembelian.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPembelian.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPembelian.Location = new System.Drawing.Point(22, 145);
+            this.dgvPembelian.Location = new System.Drawing.Point(22, 160);
             this.dgvPembelian.Name = "dgvPembelian";
             this.dgvPembelian.ReadOnly = true;
             this.dgvPembelian.RowHeadersWidth = 51;
@@ -320,7 +321,7 @@
             this.panelDetail.Controls.Add(this.lblTotalDetail);
             this.panelDetail.Controls.Add(this.lblDetailTitle);
             this.panelDetail.Controls.Add(this.dgvDetail);
-            this.panelDetail.Location = new System.Drawing.Point(22, 155);
+            this.panelDetail.Location = new System.Drawing.Point(22, 160);
             this.panelDetail.Name = "panelDetail";
             this.panelDetail.Size = new System.Drawing.Size(940, 476);
             this.panelDetail.TabIndex = 20;
@@ -382,6 +383,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::PROJEK_SIMARANG.Properties.Resources.pembelian;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.panelDetail);
             this.Controls.Add(this.panelTop);

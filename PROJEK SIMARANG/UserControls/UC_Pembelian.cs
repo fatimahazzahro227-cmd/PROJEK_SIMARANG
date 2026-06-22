@@ -212,7 +212,39 @@ namespace PROJEK_SIMARANG.UserControls
 
         private void btnTambahItem_Click(object sender, EventArgs e)
         {
+            if (cmbProduk.SelectedItem == null)
+            {
+                MessageBox.Show("Pilih produk terlebih dahulu.");
+                return;
+            }
 
+            if (string.IsNullOrEmpty(txtJumlah.Text))
+            {
+                MessageBox.Show("Jumlah wajib diisi.");
+                return;
+            }
+
+            var produk = (Produk)cmbProduk.SelectedItem;
+            int jumlah = int.Parse(txtJumlah.Text.Trim());
+
+            var existing = _listItem.Find(i => i.ProdukId == produk.ProdukId);
+            if (existing != null)
+            {
+                existing.Jumlah += jumlah;
+            }
+            else
+            {
+                _listItem.Add(new DetailPembelian
+                {
+                    ProdukId = produk.ProdukId,
+                    NamaProduk = produk.NamaProduk,
+                    HargaBeli = produk.HargaBeli,
+                    Jumlah = jumlah
+                });
+            }
+
+            TampilkanItem();
+            txtJumlah.Text = "";
         }
 
         private void btnSimpanTransaksi_Click_1(object sender, EventArgs e)

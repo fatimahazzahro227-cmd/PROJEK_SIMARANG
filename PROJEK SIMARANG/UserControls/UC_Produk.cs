@@ -1,4 +1,5 @@
-﻿using PROJEK_SIMARANG.Helpers;
+﻿using System.IO;
+using PROJEK_SIMARANG.Helpers;
 using PROJEK_SIMARANG.Models;
 using PROJEK_SIMARANG.Services;
 using System;
@@ -20,6 +21,9 @@ namespace PROJEK_SIMARANG.UserControls
         private List<Produk> _listProduk = new List<Produk>();
         private int _selectedId = 0;
         private bool _isEdit = false;
+        private string _namaFotoTersimpan = "";
+        private readonly string _folderFoto = Path.Combine(Application.StartupPath, "Images", "Produk");
+
         public UC_Produk()
         {
             InitializeComponent();
@@ -66,6 +70,14 @@ namespace PROJEK_SIMARANG.UserControls
             dgvProduk.Rows.Clear();
             dgvProduk.Columns.Clear();
 
+            // Kolom khusus gambar
+            DataGridViewImageColumn colFoto = new DataGridViewImageColumn();
+            colFoto.Name = "Foto";
+            colFoto.HeaderText = "Foto";
+            colFoto.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            colFoto.Width = 60;
+            dgvProduk.Columns.Add(colFoto);
+
             dgvProduk.Columns.Add("ID", "ID");
             dgvProduk.Columns.Add("NamaProduk", "Nama Produk");
             dgvProduk.Columns.Add("Kategori", "Kategori");
@@ -74,9 +86,20 @@ namespace PROJEK_SIMARANG.UserControls
             dgvProduk.Columns.Add("HargaJual", "Harga Jual");
             dgvProduk.Columns.Add("Status", "Status");
 
+            dgvProduk.RowTemplate.Height = 60; // biar muat thumbnail
+
             foreach (var p in list)
             {
-                dgvProduk.Rows.Add(
+                Image gambar = null;
+                if (!string.IsNullOrEmpty(p.FotoProduk))
+                {
+                    string pathFoto = Path.Combine(_folderFoto, p.FotoProduk);
+                    if (File.Exists(pathFoto))
+                        gambar = Image.FromFile(pathFoto);
+                }
+
+                int rowIndex = dgvProduk.Rows.Add(
+                    gambar,
                     p.ProdukId,
                     p.NamaProduk,
                     p.NamaKategori,
@@ -141,6 +164,13 @@ namespace PROJEK_SIMARANG.UserControls
             cmbStatus.Text = produk.StatusProduk;
             cmbKategori.SelectedValue = produk.KategoriProdukId;
 
+            _namaFotoTersimpan = produk.FotoProduk;
+            string pathFoto = Path.Combine(_folderFoto, produk.FotoProduk ?? "");
+            if (!string.IsNullOrEmpty(produk.FotoProduk) && File.Exists(pathFoto))
+                pictFoto.Image = Image.FromFile(pathFoto);
+            else
+                pictFoto.Image = null;
+
             lblFormTitle.Text = "Edit Produk";
             panelInput.Visible = true;
             panelInput.BringToFront();
@@ -195,7 +225,8 @@ namespace PROJEK_SIMARANG.UserControls
                     HargaJual = decimal.Parse(txtHargaJual.Text.Trim()),
                     Deskripsi = txtDeskripsi.Text.Trim(),
                     StatusProduk = cmbStatus.Text,
-                    KategoriProdukId = Convert.ToInt32(cmbKategori.SelectedValue)
+                    KategoriProdukId = Convert.ToInt32(cmbKategori.SelectedValue),
+                    FotoProduk = _namaFotoTersimpan
                 };
 
                 if (_isEdit)
@@ -235,6 +266,9 @@ namespace PROJEK_SIMARANG.UserControls
             cmbStatus.SelectedIndex = 0;
             if (cmbKategori.Items.Count > 0)
                 cmbKategori.SelectedIndex = 0;
+
+            pictFoto.Image = null;
+            _namaFotoTersimpan = "";
         }
 
         private void textDeskripsi_TextChanged(object sender, EventArgs e)
@@ -253,6 +287,32 @@ namespace PROJEK_SIMARANG.UserControls
         }
 
         private void dgvProduk_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnPilihFoto_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string namaBaru = Guid.NewGuid() + Path.GetExtension(ofd.FileName);
+
+                    if (!Directory.Exists(_folderFoto))
+                        Directory.CreateDirectory(_folderFoto);
+
+                    string tujuan = Path.Combine(_folderFoto, namaBaru);
+                    File.Copy(ofd.FileName, tujuan, true);
+
+                    pictFoto.Image = Image.FromFile(tujuan);
+                    _namaFotoTersimpan = namaBaru;
+                }
+            }
+        }
+
+        private void txtNamaProduk_TextChanged(object sender, EventArgs e)
         {
 
         }

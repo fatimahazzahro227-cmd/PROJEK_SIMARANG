@@ -98,6 +98,7 @@
             this.lblError.Size = new System.Drawing.Size(44, 16);
             this.lblError.TabIndex = 4;
             this.lblError.Text = "label1";
+            this.lblError.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblError.Click += new System.EventHandler(this.lblError_Click);
             // 
             // lblPassword

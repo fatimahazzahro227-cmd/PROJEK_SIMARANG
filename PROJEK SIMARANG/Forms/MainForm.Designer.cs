@@ -30,6 +30,7 @@
         {
             this.panelContent = new System.Windows.Forms.Panel();
             this.btnDashboard = new System.Windows.Forms.Button();
+            this.panelSidebar = new System.Windows.Forms.FlowLayoutPanel();
             this.btnProduk = new System.Windows.Forms.Button();
             this.btnPelanggan = new System.Windows.Forms.Button();
             this.btnSupplier = new System.Windows.Forms.Button();
@@ -39,7 +40,6 @@
             this.btnLaporan = new System.Windows.Forms.Button();
             this.btnUser = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.panelSidebar = new System.Windows.Forms.FlowLayoutPanel();
             this.panelSidebar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,6 +66,26 @@
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.UseVisualStyleBackColor = false;
             this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
+            // 
+            // panelSidebar
+            // 
+            this.panelSidebar.BackColor = System.Drawing.Color.Silver;
+            this.panelSidebar.Controls.Add(this.btnDashboard);
+            this.panelSidebar.Controls.Add(this.btnProduk);
+            this.panelSidebar.Controls.Add(this.btnPelanggan);
+            this.panelSidebar.Controls.Add(this.btnSupplier);
+            this.panelSidebar.Controls.Add(this.btnStok);
+            this.panelSidebar.Controls.Add(this.btnPembelian);
+            this.panelSidebar.Controls.Add(this.btnPenjualan);
+            this.panelSidebar.Controls.Add(this.btnLaporan);
+            this.panelSidebar.Controls.Add(this.btnUser);
+            this.panelSidebar.Controls.Add(this.btnLogout);
+            this.panelSidebar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panelSidebar.Location = new System.Drawing.Point(0, 0);
+            this.panelSidebar.Name = "panelSidebar";
+            this.panelSidebar.Size = new System.Drawing.Size(200, 653);
+            this.panelSidebar.TabIndex = 12;
+            this.panelSidebar.Visible = false;
             // 
             // btnProduk
             // 
@@ -184,26 +204,6 @@
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // panelSidebar
-            // 
-            this.panelSidebar.BackColor = System.Drawing.Color.Silver;
-            this.panelSidebar.Controls.Add(this.btnDashboard);
-            this.panelSidebar.Controls.Add(this.btnProduk);
-            this.panelSidebar.Controls.Add(this.btnPelanggan);
-            this.panelSidebar.Controls.Add(this.btnSupplier);
-            this.panelSidebar.Controls.Add(this.btnStok);
-            this.panelSidebar.Controls.Add(this.btnPembelian);
-            this.panelSidebar.Controls.Add(this.btnPenjualan);
-            this.panelSidebar.Controls.Add(this.btnLaporan);
-            this.panelSidebar.Controls.Add(this.btnUser);
-            this.panelSidebar.Controls.Add(this.btnLogout);
-            this.panelSidebar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panelSidebar.Location = new System.Drawing.Point(0, 0);
-            this.panelSidebar.Name = "panelSidebar";
-            this.panelSidebar.Size = new System.Drawing.Size(200, 653);
-            this.panelSidebar.TabIndex = 12;
-            this.panelSidebar.Visible = false;
             // 
             // MainForm
             // 

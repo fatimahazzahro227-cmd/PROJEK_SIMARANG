@@ -40,6 +40,7 @@
             this.panelFilter = new System.Windows.Forms.Panel();
             this.lblKeuntunganTitle = new System.Windows.Forms.Label();
             this.cardKeuntungan = new System.Windows.Forms.Panel();
+            this.lblMargin = new System.Windows.Forms.Label();
             this.lblPembelianTitle = new System.Windows.Forms.Label();
             this.cardPembelian = new System.Windows.Forms.Panel();
             this.lblPenjualanTitle = new System.Windows.Forms.Label();
@@ -51,6 +52,7 @@
             this.dgvPembelian = new System.Windows.Forms.DataGridView();
             this.tabKeuntungan = new System.Windows.Forms.TabPage();
             this.dgvKeuntungan = new System.Windows.Forms.DataGridView();
+            this.formsPlot1 = new ScottPlot.FormsPlot();
             this.panelFilter.SuspendLayout();
             this.cardKeuntungan.SuspendLayout();
             this.cardPembelian.SuspendLayout();
@@ -117,7 +119,7 @@
             // lblKeuntungan
             // 
             this.lblKeuntungan.AutoSize = true;
-            this.lblKeuntungan.Location = new System.Drawing.Point(139, 49);
+            this.lblKeuntungan.Location = new System.Drawing.Point(14, 49);
             this.lblKeuntungan.Name = "lblKeuntungan";
             this.lblKeuntungan.Size = new System.Drawing.Size(35, 16);
             this.lblKeuntungan.TabIndex = 1;
@@ -172,6 +174,7 @@
             // cardKeuntungan
             // 
             this.cardKeuntungan.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cardKeuntungan.Controls.Add(this.lblMargin);
             this.cardKeuntungan.Controls.Add(this.lblKeuntungan);
             this.cardKeuntungan.Controls.Add(this.lblKeuntunganTitle);
             this.cardKeuntungan.Location = new System.Drawing.Point(670, 160);
@@ -179,6 +182,19 @@
             this.cardKeuntungan.Size = new System.Drawing.Size(290, 80);
             this.cardKeuntungan.TabIndex = 5;
             this.cardKeuntungan.Paint += new System.Windows.Forms.PaintEventHandler(this.cardKeuntungan_Paint);
+            // 
+            // lblMargin
+            // 
+            this.lblMargin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMargin.AutoSize = true;
+            this.lblMargin.Location = new System.Drawing.Point(228, 49);
+            this.lblMargin.Name = "lblMargin";
+            this.lblMargin.Size = new System.Drawing.Size(44, 16);
+            this.lblMargin.TabIndex = 7;
+            this.lblMargin.Text = "label4";
+            this.lblMargin.Click += new System.EventHandler(this.lblMargin_Click);
             // 
             // lblPembelianTitle
             // 
@@ -222,15 +238,13 @@
             // 
             // tabLaporan
             // 
-            this.tabLaporan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabLaporan.Controls.Add(this.tabPenjualan);
             this.tabLaporan.Controls.Add(this.tabPembelian);
             this.tabLaporan.Controls.Add(this.tabKeuntungan);
             this.tabLaporan.Location = new System.Drawing.Point(20, 264);
             this.tabLaporan.Name = "tabLaporan";
             this.tabLaporan.SelectedIndex = 0;
-            this.tabLaporan.Size = new System.Drawing.Size(940, 319);
+            this.tabLaporan.Size = new System.Drawing.Size(556, 319);
             this.tabLaporan.TabIndex = 6;
             // 
             // tabPenjualan
@@ -238,7 +252,7 @@
             this.tabPenjualan.Controls.Add(this.dgvPenjualan);
             this.tabPenjualan.Location = new System.Drawing.Point(4, 25);
             this.tabPenjualan.Name = "tabPenjualan";
-            this.tabPenjualan.Size = new System.Drawing.Size(932, 290);
+            this.tabPenjualan.Size = new System.Drawing.Size(548, 290);
             this.tabPenjualan.TabIndex = 0;
             this.tabPenjualan.Text = "Laporan Penjualan";
             this.tabPenjualan.UseVisualStyleBackColor = true;
@@ -247,19 +261,18 @@
             // 
             this.dgvPenjualan.AllowUserToAddRows = false;
             this.dgvPenjualan.AllowUserToDeleteRows = false;
-            this.dgvPenjualan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPenjualan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPenjualan.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvPenjualan.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPenjualan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPenjualan.Location = new System.Drawing.Point(-1, 3);
+            this.dgvPenjualan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPenjualan.Location = new System.Drawing.Point(0, 0);
             this.dgvPenjualan.Name = "dgvPenjualan";
             this.dgvPenjualan.ReadOnly = true;
             this.dgvPenjualan.RowHeadersWidth = 51;
             this.dgvPenjualan.RowTemplate.Height = 24;
             this.dgvPenjualan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPenjualan.Size = new System.Drawing.Size(933, 284);
+            this.dgvPenjualan.Size = new System.Drawing.Size(548, 290);
             this.dgvPenjualan.TabIndex = 0;
             this.dgvPenjualan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPenjualan_CellContentClick);
             // 
@@ -268,7 +281,7 @@
             this.tabPembelian.Controls.Add(this.dgvPembelian);
             this.tabPembelian.Location = new System.Drawing.Point(4, 25);
             this.tabPembelian.Name = "tabPembelian";
-            this.tabPembelian.Size = new System.Drawing.Size(932, 290);
+            this.tabPembelian.Size = new System.Drawing.Size(548, 290);
             this.tabPembelian.TabIndex = 1;
             this.tabPembelian.Text = "Laporan Pembelian";
             this.tabPembelian.UseVisualStyleBackColor = true;
@@ -277,18 +290,17 @@
             // 
             this.dgvPembelian.AllowUserToAddRows = false;
             this.dgvPembelian.AllowUserToDeleteRows = false;
-            this.dgvPembelian.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPembelian.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPembelian.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvPembelian.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPembelian.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPembelian.Location = new System.Drawing.Point(3, 3);
+            this.dgvPembelian.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPembelian.Location = new System.Drawing.Point(0, 0);
             this.dgvPembelian.Name = "dgvPembelian";
             this.dgvPembelian.RowHeadersWidth = 51;
             this.dgvPembelian.RowTemplate.Height = 24;
             this.dgvPembelian.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPembelian.Size = new System.Drawing.Size(933, 291);
+            this.dgvPembelian.Size = new System.Drawing.Size(548, 290);
             this.dgvPembelian.TabIndex = 0;
             this.dgvPembelian.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPembelian_CellContentClick);
             // 
@@ -297,7 +309,7 @@
             this.tabKeuntungan.Controls.Add(this.dgvKeuntungan);
             this.tabKeuntungan.Location = new System.Drawing.Point(4, 25);
             this.tabKeuntungan.Name = "tabKeuntungan";
-            this.tabKeuntungan.Size = new System.Drawing.Size(932, 290);
+            this.tabKeuntungan.Size = new System.Drawing.Size(548, 290);
             this.tabKeuntungan.TabIndex = 2;
             this.tabKeuntungan.Text = "Laporan Keuntungan";
             this.tabKeuntungan.UseVisualStyleBackColor = true;
@@ -310,14 +322,25 @@
             this.dgvKeuntungan.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvKeuntungan.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvKeuntungan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvKeuntungan.Location = new System.Drawing.Point(3, 3);
+            this.dgvKeuntungan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvKeuntungan.Location = new System.Drawing.Point(0, 0);
             this.dgvKeuntungan.Name = "dgvKeuntungan";
             this.dgvKeuntungan.ReadOnly = true;
             this.dgvKeuntungan.RowHeadersWidth = 51;
             this.dgvKeuntungan.RowTemplate.Height = 24;
             this.dgvKeuntungan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvKeuntungan.Size = new System.Drawing.Size(926, 284);
+            this.dgvKeuntungan.Size = new System.Drawing.Size(548, 290);
             this.dgvKeuntungan.TabIndex = 0;
+            // 
+            // formsPlot1
+            // 
+            this.formsPlot1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.formsPlot1.Location = new System.Drawing.Point(603, 292);
+            this.formsPlot1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.formsPlot1.Name = "formsPlot1";
+            this.formsPlot1.Size = new System.Drawing.Size(357, 284);
+            this.formsPlot1.TabIndex = 1;
+            this.formsPlot1.Load += new System.EventHandler(this.formsPlot1_Load);
             // 
             // UC_Laporan
             // 
@@ -327,6 +350,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.tabLaporan);
+            this.Controls.Add(this.formsPlot1);
             this.Controls.Add(this.cardKeuntungan);
             this.Controls.Add(this.cardPembelian);
             this.Controls.Add(this.cardPenjualan);
@@ -376,5 +400,7 @@
         private System.Windows.Forms.DataGridView dgvPenjualan;
         private System.Windows.Forms.DataGridView dgvPembelian;
         private System.Windows.Forms.DataGridView dgvKeuntungan;
+        private System.Windows.Forms.Label lblMargin;
+        private ScottPlot.FormsPlot formsPlot1;
     }
 }

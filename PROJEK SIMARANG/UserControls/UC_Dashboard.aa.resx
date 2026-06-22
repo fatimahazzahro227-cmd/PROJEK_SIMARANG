@@ -133,14 +133,21 @@
   <data name="lblTotalProduk.Size" type="System.Drawing.Size, System.Drawing">
     <value>19, 22</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lblTotalProdukTitle.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="lblTotalProdukTitle.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 10.2pt, style=Bold</value>
   </data>
   <data name="lblTotalProdukTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 16</value>
+    <value>58, 16</value>
   </data>
   <data name="lblTotalProdukTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 21</value>
+    <value>100, 23</value>
+  </data>
+  <data name="lblTotalProdukTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="lblTotalPenjualanDesc.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 9pt</value>

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ScottPlot;
 
 namespace PROJEK_SIMARANG.UserControls
 {
@@ -77,22 +78,22 @@ namespace PROJEK_SIMARANG.UserControls
                 DateTime dari = dtpDari.Value.Date;
                 DateTime sampai = dtpSampai.Value.Date.AddDays(1).AddSeconds(-1);
 
-                decimal totalPenjualan = _laporanService.GetTotalPenjualan(dari, sampai);
-                decimal totalPembelian = _laporanService.GetTotalPembelian(dari, sampai);
-                decimal keuntungan = totalPenjualan - totalPembelian;
+                var hasil = _laporanService.GetLabaKotorPeriode(dari, sampai);
 
-                lblTotalPenjualan.Text = "Rp " + totalPenjualan.ToString("N0");
-                lblTotalPembelian.Text = "Rp " + totalPembelian.ToString("N0");
-                lblKeuntungan.Text = "Rp " + keuntungan.ToString("N0");
+                lblTotalPenjualan.Text = "Rp " + hasil.Pendapatan.ToString("N0");
+                lblTotalPembelian.Text = "Rp " + hasil.Modal.ToString("N0");
+                lblKeuntungan.Text = "Rp " + hasil.LabaKotor.ToString("N0");
+                lblMargin.Text = hasil.MarginPersen.ToString("N2") + "%";
 
-                if (keuntungan < 0)
+                if (hasil.LabaKotor < 0)
                     lblKeuntungan.ForeColor = System.Drawing.Color.Red;
                 else
                     lblKeuntungan.ForeColor = System.Drawing.Color.FromArgb(30, 30, 30);
 
                 LoadTabelPenjualan(dari, sampai);
                 LoadTabelPembelian(dari, sampai);
-                LoadTabelKeuntungan(totalPenjualan, totalPembelian, keuntungan);
+                LoadTabelKeuntungan(hasil.Pendapatan, hasil.Modal, hasil.LabaKotor);
+                LoadGrafikPenjualan();
             }
             catch (Exception ex)
             {
@@ -167,6 +168,43 @@ namespace PROJEK_SIMARANG.UserControls
             dgvKeuntungan.Rows.Add("Keuntungan", "Rp " + keuntungan.ToString("N0"));
         }
 
+        private void LoadGrafikPenjualan()
+{
+    try
+    {
+        var dt = _laporanService.GetLabaRugiBulanan();
+
+        var bulan = new List<string>();
+        var pendapatan = new List<double>();
+        var labaKotor = new List<double>();
+
+        foreach (DataRow row in dt.Rows)
+        {
+            bulan.Add(row["bulan"].ToString());
+            pendapatan.Add(Convert.ToDouble(row["total_pendapatan"]));
+            labaKotor.Add(Convert.ToDouble(row["laba_kotor"]));
+        }
+
+        formsPlot1.Plot.Clear();
+
+        double[] posisi = Enumerable.Range(0, bulan.Count).Select(i => (double)i).ToArray();
+
+        var barPendapatan = formsPlot1.Plot.AddBar(pendapatan.ToArray(), posisi);
+        barPendapatan.Label = "Pendapatan";
+
+        formsPlot1.Plot.XTicks(posisi, bulan.ToArray());
+        formsPlot1.Plot.Title("Grafik Pendapatan per Bulan");
+        formsPlot1.Plot.YLabel("Rupiah");
+        formsPlot1.Plot.Legend();
+
+        formsPlot1.Refresh();
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show("Gagal memuat grafik: " + ex.Message);
+    }
+}
+
         private void lblSubtitle_Click(object sender, EventArgs e)
         {
 
@@ -196,12 +234,35 @@ namespace PROJEK_SIMARANG.UserControls
                 cardKeuntungan.Width = cardWidth;
             }
 
+            int grafikWidth = (this.Width - 60) / 3;
+            int grafikX = this.Width - grafikWidth - 20;
+            int tabWidth = this.Width - 60 - grafikWidth;
+            int contentY = 270;
+            int contentHeight = this.Height - 290;
+
             if (tabLaporan != null)
             {
-                tabLaporan.Location = new System.Drawing.Point(20, 270);
-                tabLaporan.Width = this.Width - 40;
-                tabLaporan.Height = this.Height - 290;
+                tabLaporan.Location = new System.Drawing.Point(20, contentY);
+                tabLaporan.Width = tabWidth;
+                tabLaporan.Height = contentHeight;
             }
+
+            if (formsPlot1 != null)
+            {
+                formsPlot1.Location = new System.Drawing.Point(grafikX, contentY);
+                formsPlot1.Width = grafikWidth;
+                formsPlot1.Height = contentHeight;
+            }
+        }
+
+        private void lblMargin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void formsPlot1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

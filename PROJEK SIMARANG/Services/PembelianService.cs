@@ -45,21 +45,19 @@ namespace PROJEK_SIMARANG.Services
             return list;
         }
 
-        public int Add(Pembelian pb)
+        public void AddViaProcedure(int idSupplier, int idUser, int idProduk, int jumlah, decimal hargaBeli)
         {
             using (var conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string query = @"INSERT INTO pembelian (tanggal_pembelian, status_pembelian, id_user, id_supplier)
-                                 VALUES (@tgl, @status, @userid, @supplierid)
-                                 RETURNING id_pembelian";
-                using (var cmd = new NpgsqlCommand(query, conn))
+                using (var cmd = new NpgsqlCommand("CALL sp_input_pembelian(@sup, @usr, @pro, @jml, @hrg)", conn))
                 {
-                    cmd.Parameters.AddWithValue("tgl", pb.TanggalPembelian);
-                    cmd.Parameters.AddWithValue("status", pb.StatusPembelian ?? "Selesai");
-                    cmd.Parameters.AddWithValue("userid", pb.UserId);
-                    cmd.Parameters.AddWithValue("supplierid", pb.SupplierId);
-                    return (int)cmd.ExecuteScalar();
+                    cmd.Parameters.AddWithValue("sup", idSupplier);
+                    cmd.Parameters.AddWithValue("usr", idUser);
+                    cmd.Parameters.AddWithValue("pro", idProduk);
+                    cmd.Parameters.AddWithValue("jml", jumlah);
+                    cmd.Parameters.AddWithValue("hrg", hargaBeli);
+                    cmd.ExecuteNonQuery();
                 }
             }
         }

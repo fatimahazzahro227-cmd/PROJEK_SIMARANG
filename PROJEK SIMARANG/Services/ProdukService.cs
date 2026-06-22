@@ -14,11 +14,11 @@ namespace PROJEK_SIMARANG.Services
             {
                 conn.Open();
                 string query = @"SELECT p.id_produk, p.nama_produk, p.satuan, p.harga_beli, 
-                                        p.harga_jual, p.deskripsi, p.status_produk,
-                                        p.id_kategori, k.nama_kategori
-                                 FROM produk p
-                                 JOIN kategori_produk k ON p.id_kategori = k.id_kategori
-                                 ORDER BY p.id_produk";
+                        p.harga_jual, p.deskripsi, p.status_produk,
+                        p.id_kategori, k.nama_kategori, p.foto_produk
+                 FROM produk p
+                 JOIN kategori_produk k ON p.id_kategori = k.id_kategori
+                 ORDER BY p.id_produk";
                 using (var cmd = new NpgsqlCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -34,7 +34,8 @@ namespace PROJEK_SIMARANG.Services
                             Deskripsi = reader.IsDBNull(5) ? "" : reader.GetString(5),
                             StatusProduk = reader.IsDBNull(6) ? "" : reader.GetString(6),
                             KategoriProdukId = reader.GetInt32(7),
-                            NamaKategori = reader.GetString(8)
+                            NamaKategori = reader.GetString(8),
+                            FotoProduk = reader.IsDBNull(9) ? "" : reader.GetString(9)
                         });
                     }
                 }
@@ -48,8 +49,8 @@ namespace PROJEK_SIMARANG.Services
             {
                 conn.Open();
                 string query = @"INSERT INTO produk 
-                                 (nama_produk, satuan, harga_beli, harga_jual, deskripsi, status_produk, id_kategori)
-                                 VALUES (@nama, @satuan, @hargabeli, @hargajual, @desc, @status, @kategori)";
+                         (nama_produk, satuan, harga_beli, harga_jual, deskripsi, status_produk, id_kategori, foto_produk)
+                         VALUES (@nama, @satuan, @hargabeli, @hargajual, @desc, @status, @kategori, @foto)";
                 using (var cmd = new NpgsqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("nama", p.NamaProduk);
@@ -59,6 +60,7 @@ namespace PROJEK_SIMARANG.Services
                     cmd.Parameters.AddWithValue("desc", p.Deskripsi ?? "");
                     cmd.Parameters.AddWithValue("status", p.StatusProduk ?? "Aktif");
                     cmd.Parameters.AddWithValue("kategori", p.KategoriProdukId);
+                    cmd.Parameters.AddWithValue("foto", (object)p.FotoProduk ?? System.DBNull.Value);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -70,11 +72,11 @@ namespace PROJEK_SIMARANG.Services
             {
                 conn.Open();
                 string query = @"UPDATE produk SET 
-                                 nama_produk = @nama, satuan = @satuan,
-                                 harga_beli = @hargabeli, harga_jual = @hargajual,
-                                 deskripsi = @desc, status_produk = @status,
-                                 id_kategori = @kategori
-                                 WHERE id_produk = @id";
+                         nama_produk = @nama, satuan = @satuan,
+                         harga_beli = @hargabeli, harga_jual = @hargajual,
+                         deskripsi = @desc, status_produk = @status,
+                         id_kategori = @kategori, foto_produk = @foto
+                         WHERE id_produk = @id";
                 using (var cmd = new NpgsqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("nama", p.NamaProduk);
@@ -84,6 +86,7 @@ namespace PROJEK_SIMARANG.Services
                     cmd.Parameters.AddWithValue("desc", p.Deskripsi ?? "");
                     cmd.Parameters.AddWithValue("status", p.StatusProduk ?? "Aktif");
                     cmd.Parameters.AddWithValue("kategori", p.KategoriProdukId);
+                    cmd.Parameters.AddWithValue("foto", (object)p.FotoProduk ?? System.DBNull.Value);
                     cmd.Parameters.AddWithValue("id", p.ProdukId);
                     cmd.ExecuteNonQuery();
                 }

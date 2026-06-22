@@ -17,5 +17,6 @@ namespace PROJEK_SIMARANG.Models
         public string StatusProduk { get; set; }
         public int KategoriProdukId { get; set; }
         public string NamaKategori { get; set; }
+        public string FotoProduk { get; set; }
     }
 }

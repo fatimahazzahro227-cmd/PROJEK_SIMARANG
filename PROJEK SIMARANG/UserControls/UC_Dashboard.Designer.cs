@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Dashboard));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTotalProdukDesc = new System.Windows.Forms.Label();
             this.lblTotalProduk = new System.Windows.Forms.Label();
             this.lblTotalProdukTitle = new System.Windows.Forms.Label();
@@ -146,6 +147,14 @@
             // 
             resources.ApplyResources(this.dgvTransaksi, "dgvTransaksi");
             this.dgvTransaksi.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTransaksi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTransaksi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTransaksi.Name = "dgvTransaksi";
             this.dgvTransaksi.RowTemplate.Height = 24;
