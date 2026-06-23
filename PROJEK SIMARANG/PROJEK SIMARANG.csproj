@@ -135,7 +135,7 @@
     <Compile Include="Services\LaporanService.cs" />
     <Compile Include="Services\PenjualanService.cs" />
     <Compile Include="Services\ProdukService.cs" />
-    <Compile Include="Services\RoleService.cs" />
+    <Compile Include="Services\Role.cs" />
     <Compile Include="Services\StokService.cs" />
     <Compile Include="Services\SupplierService.cs" />
     <Compile Include="Services\UserService.cs" />
