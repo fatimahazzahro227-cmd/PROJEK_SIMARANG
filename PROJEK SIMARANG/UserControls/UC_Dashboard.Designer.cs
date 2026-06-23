@@ -146,6 +146,7 @@
             // dgvTransaksi
             // 
             resources.ApplyResources(this.dgvTransaksi, "dgvTransaksi");
+            this.dgvTransaksi.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTransaksi.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;

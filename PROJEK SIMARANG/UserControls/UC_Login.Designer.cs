@@ -76,6 +76,7 @@
             // 
             this.txtPassword.Location = new System.Drawing.Point(73, 250);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(302, 22);
             this.txtPassword.TabIndex = 6;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged_1);
@@ -92,12 +93,12 @@
             // 
             this.lblError.AutoSize = true;
             this.lblError.BackColor = System.Drawing.Color.Transparent;
-            this.lblError.ForeColor = System.Drawing.Color.Brown;
+            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError.ForeColor = System.Drawing.Color.OrangeRed;
             this.lblError.Location = new System.Drawing.Point(37, 410);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(44, 16);
+            this.lblError.Size = new System.Drawing.Size(0, 20);
             this.lblError.TabIndex = 4;
-            this.lblError.Text = "label1";
             this.lblError.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblError.Click += new System.EventHandler(this.lblError_Click);
             // 

@@ -69,7 +69,9 @@ namespace PROJEK_SIMARANG.UserControls
             dgvUser.Columns.Add("ID", "ID");
             dgvUser.Columns.Add("NamaUser", "Nama User");
             dgvUser.Columns.Add("Username", "Username");
+            dgvUser.Columns.Add("Password", "Password"); 
             dgvUser.Columns.Add("NoHp", "No. HP");
+            dgvUser.Columns.Add("Alamat", "Alamat");    
             dgvUser.Columns.Add("Role", "Role");
             dgvUser.Columns.Add("Status", "Status Akun");
             dgvUser.Columns.Add("TanggalDaftar", "Tanggal Daftar");
@@ -80,7 +82,9 @@ namespace PROJEK_SIMARANG.UserControls
                     u.UserId,
                     u.NamaUser,
                     u.Username,
+                    u.Password,   
                     u.NoHp,
+                    u.Alamat,       
                     u.NamaRole,
                     u.StatusAkun,
                     u.TanggalDaftar.ToString("dd/MM/yyyy")

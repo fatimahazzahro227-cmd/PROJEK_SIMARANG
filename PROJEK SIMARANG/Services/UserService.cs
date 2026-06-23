@@ -52,12 +52,13 @@ namespace PROJEK_SIMARANG.Services
             using (var conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string query = @"SELECT u.id_user, u.nama_user, u.username, 
-                                        u.no_hp, u.alamat, u.tanggal_daftar,
-                                        u.status_akun, u.id_role, r.nama_role
-                                 FROM users u
-                                 JOIN role r ON u.id_role = r.id_role
-                                 ORDER BY u.id_user";
+                // Tambahkan u.password di bawah ini ↓
+                string query = @"SELECT u.id_user, u.nama_user, u.username, u.password, 
+                                u.no_hp, u.alamat, u.tanggal_daftar,
+                                u.status_akun, u.id_role, r.nama_role
+                         FROM users u
+                         JOIN role r ON u.id_role = r.id_role
+                         ORDER BY u.id_user";
                 using (var cmd = new NpgsqlCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -68,12 +69,13 @@ namespace PROJEK_SIMARANG.Services
                             UserId = reader.GetInt32(0),
                             NamaUser = reader.GetString(1),
                             Username = reader.GetString(2),
-                            NoHp = reader.IsDBNull(3) ? "" : reader.GetString(3),
-                            Alamat = reader.IsDBNull(4) ? "" : reader.GetString(4),
-                            TanggalDaftar = reader.GetDateTime(5),
-                            StatusAkun = reader.GetString(6),
-                            RoleId = reader.GetInt32(7),
-                            NamaRole = reader.GetString(8)
+                            Password = reader.IsDBNull(3) ? "" : reader.GetString(3), 
+                            NoHp = reader.IsDBNull(4) ? "" : reader.GetString(4),     
+                            Alamat = reader.IsDBNull(5) ? "" : reader.GetString(5),   
+                            TanggalDaftar = reader.GetDateTime(6),                    
+                            StatusAkun = reader.GetString(7),                         
+                            RoleId = reader.GetInt32(8),                              
+                            NamaRole = reader.GetString(9)                         
                         });
                     }
                 }
